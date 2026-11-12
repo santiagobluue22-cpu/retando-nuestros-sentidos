@@ -8,11 +8,11 @@
       "medio": "imagen",
       "ronda": 1,
       "orden": 1,
-      "tipo": "real",
-      "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Foto propia del equipo: letrero de una cafetería del campus, sin personas.",
-      "zona_clave": { "x": 62, "y": 38, "radio": 14 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una foto real. Las letras del letrero se ven un poco borrosas y torcidas, pero eso pasa por el desenfoque de la cámara y por el ángulo de la toma. Todas las palabras se pueden leer y tienen sentido. Una imagen generada suele producir letras que no forman palabras.",
+      "tipo": "ia",
+      "herramienta_generadora": "[Completar: herramienta usada]",
+      "prompt_o_guion_usado": "[Completar: prompt usado] Pueblo ficticio de casas de madera sobre un barranco con niebla y cascada.",
+      "zona_clave": { "x": 65, "y": 40, "radio": 13 },
+      "explicacion_pista": "Es una imagen generada con IA. Fíjate en la edificación de la derecha del centro: una torre de varios pisos apoyada solo en palos delgados encima de una roca. Los puentes llegan a ella desde distintos lados y a alturas que no conectan con nada. A primera vista la escena se ve espectacular, pero esa construcción no se sostendría en la realidad. La IA arma lugares 'bonitos' sin respetar cómo se construye de verdad.",
       "dificultad": "baja"
     },
     {
@@ -35,10 +35,10 @@
       "ronda": 1,
       "orden": 3,
       "tipo": "ia",
-      "herramienta_generadora": "[ej. Midjourney v7 / DALL·E / Firefly]",
-      "prompt_o_guion_usado": "[Prompt usado, ej. 'fotografía de una mano ficticia sosteniendo una taza en una mesa de madera, luz de ventana']",
-      "zona_clave": { "x": 45, "y": 60, "radio": 12 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una imagen generada con IA. La mano tiene un dedo de más y el meñique se mezcla con el asa de la taza. Los generadores todavía fallan al dibujar cómo se unen los objetos que se tocan.",
+      "herramienta_generadora": "[Completar: herramienta usada]",
+      "prompt_o_guion_usado": "[Completar: prompt usado] Mercado callejero ficticio de frutas al atardecer.",
+      "zona_clave": { "x": 81, "y": 31, "radio": 15 },
+      "explicacion_pista": "Es una imagen generada con IA. Mira los letreros de la derecha: de lejos parecen escritos, pero si te acercas, las letras no forman palabras que se puedan leer. Son formas que se parecen a letras. En una foto real, aunque esté borrosa, los letreros tienen palabras de verdad. El texto sigue siendo uno de los rastros más útiles para detectar una imagen generada.",
       "dificultad": "baja"
     },
     {
