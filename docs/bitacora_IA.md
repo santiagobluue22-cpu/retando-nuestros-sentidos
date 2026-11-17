@@ -40,3 +40,7 @@
   - Envío a Sheets solo al completar la sesión, para que «Salir» descarte los datos del todo.
   - Calibración calculada como confianza 1–5 traducida a 50–100 %.
 - Verificación hecha: flujo completo en un navegador Chromium con viewport de 375 px, reproducción de audio y columnas del CSV. **Pendiente:** pruebas en Safari de iOS y Chrome de Android en dispositivos reales.
+
+| Fecha | Integrante | Herramienta | Propósito | Prompt / parámetros | Qué aceptamos | Qué rechazamos / modificamos | Por qué |
+|---|---|---|---|---|---|---|---|
+| 2026-11-17 | Equipo (encargo a Claude Code) | Claude Code + EDSR ×4 (modelo neuronal de superresolución, OpenCV dnn_superres) | Mejorar la nitidez de `r1_i1` y `r1_i2` (originales de 512×286 px) | Reducción de ruido JPEG suave → EDSR ×4 → 1600 px → enfoque moderado | [Completar tras revisar] | Se descartó un mejorador generativo (tipo Real-ESRGAN/Topaz) porque inventa detalle | Las imágenes ya eran sintéticas; se comprobó que las letras deformadas del letrero (la pista) quedan iguales. No aplicar EDSR a fotos reales: añadiría rastros de procesamiento con IA |
