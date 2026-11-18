@@ -50,3 +50,11 @@
 | 2026-11-17 | Equipo | ElevenLabs (voz de catálogo, no clonada) | Audio sintético R1-A1 | «Eran las 3 de la mañana cuando escuché mi nombre. Pensé que estaba solo, hasta que alguien respondió desde debajo de mi cama.» (guion ficticio) | [Completar] | Claude Code normalizó el volumen; la pista (silencio total en las pausas) se basó en una medición del archivo | [Completar] |
 | 2026-11-18 | Equipo | ElevenLabs (voz de catálogo, no clonada) | Audios sintéticos R1-A3 y R2-A2 | [Completar: guiones] | [Completar] | Claude Code normalizó el volumen; las pistas se basaron en mediciones de los archivos (ruido en pausas, tramo sin respirar) | [Completar] |
 | 2026-11-18 | Equipo + Claude Code | Claude Code (Anthropic) | Redacción de pistas y ubicación de zonas clave de R1-I3, R1-I4, R2-I1 a R2-I4, R1-A1 a R1-A3 y R2-A1 a R2-A3 | Indicaciones del equipo por estímulo (p. ej., «señala el gato», «señala los árboles») | [Completar] | [Completar] | Las pistas deben revisarse a mano antes de la sesión |
+
+### Fuente de los audios «reales» R1-A2, R2-A1 y R2-A3 (2026-11-18)
+Según el equipo, salen de estos videos públicos de YouTube (falta indicar qué audio viene de cuál video y en qué minuto):
+- https://www.youtube.com/watch?v=hM_fTrvJbvdg
+- https://www.youtube.com/watch?v=e-Xg-OLBS0o&t=2102s
+- https://www.youtube.com/watch?v=M_fTrvJbvdg
+
+⚠️ Esto **no cumple** las reglas de contenido del proyecto: los audios reales deben ser sonidos grabados por el equipo o la voz de un integrante que dé su consentimiento. Son voces de terceros que no dieron su consentimiento, y el contenido puede tener derechos de autor. **Pendiente: reemplazarlos por grabaciones propias antes de la sesión.**
