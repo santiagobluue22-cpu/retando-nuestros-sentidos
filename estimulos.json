@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-8",
+  "version": "2026-11-18-9",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -127,9 +127,9 @@
       "orden": 3,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Foto propia: edificio reflejado en un charco, sin personas.",
-      "zona_clave": { "x": 50, "y": 70, "radio": 20 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una foto real. Al ver el reflejo invertido y algo distorsionado puede parecer 'física imposible', pero así se comporta el agua cuando se mueve. Las ondas del charco deforman el reflejo de manera coherente.",
+      "prompt_o_guion_usado": "Foto propia de un integrante del equipo: gallinazo (buitre negro) junto a un kayak naranja en la orilla.",
+      "zona_clave": { "x": 49, "y": 37, "radio": 22 },
+      "explicacion_pista": "Es una foto real, tomada por un integrante del equipo. Fíjate en la cabeza del ave y en el letrero del kayak. La cabeza arrugada y sin plumas puede parecer deformada, pero así es el gallinazo: tiene la piel de la cabeza desnuda. Las letras del kayak están gastadas y rayadas, pero se leen y continúan de forma coherente detrás del cuello: el ave tapa parte de la palabra sin deformarla. En una imagen generada, las letras suelen volverse garabatos. Aun así, lo que confirma que es real es su origen: sabemos quién la tomó.",
       "dificultad": "alta"
     },
     {
@@ -151,11 +151,11 @@
       "medio": "imagen",
       "ronda": 2,
       "orden": 5,
-      "tipo": "ia",
-      "herramienta_generadora": "[ej. Firefly Image 4]",
-      "prompt_o_guion_usado": "[Prompt: 'retrato de una persona ficticia leyendo en un parque, foto de celular']",
-      "zona_clave": { "x": 40, "y": 25, "radio": 10 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una imagen generada con IA y la persona no existe. El arete izquierdo y el derecho tienen formas distintas, y el texto de la portada del libro no se puede leer. Si un detalle pequeño no coincide con su pareja, conviene revisarlo.",
+      "tipo": "real",
+      "herramienta_generadora": "",
+      "prompt_o_guion_usado": "Foto propia de un integrante del equipo: planta de jade en maceta de barro junto a una ventana, con luz lateral.",
+      "zona_clave": { "x": 60, "y": 88, "radio": 12 },
+      "explicacion_pista": "Es una foto real, tomada por un integrante del equipo. La luz dura que cae en diagonal sobre la pared puede parecer «demasiado perfecta», como de estudio, pero es luz natural o de una lámpara entrando de lado. Mira la base: hay pequeñas hierbas creciendo en la tierra, el borde de la maceta está desgastado y en la pared hay una manchita. Son imperfecciones sin importancia que nadie pediría en un prompt y que son comunes en las fotos reales. Lo que confirma que es real es su origen: sabemos quién la tomó.",
       "dificultad": "alta"
     },
     {
@@ -177,11 +177,11 @@
       "medio": "imagen",
       "ronda": 2,
       "orden": 7,
-      "tipo": "real",
-      "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Foto propia: escritorio con objetos, tomada con modo retrato del celular.",
-      "zona_clave": { "x": 80, "y": 50, "radio": 15 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una foto real. El borde del lápiz se ve 'recortado' contra el fondo borroso. Eso lo hace el modo retrato del celular, que también es un procesamiento automático. Que una foto esté editada o procesada no quiere decir que haya sido generada con IA.",
+      "tipo": "ia",
+      "herramienta_generadora": "[Completar: herramienta usada, la misma de las imágenes IA anteriores]",
+      "prompt_o_guion_usado": "[Completar: prompt usado] Mano de una persona ficticia agarrada al tubo de un bus, con edificios de ladrillo al fondo.",
+      "zona_clave": { "x": 5, "y": 92, "radio": 9 },
+      "explicacion_pista": "Es una imagen generada con IA, y la persona de la mano no existe. La mano, el anillo y la pulsera están muy bien hechos, así que hay que buscar en otro lado. Mira la etiqueta grabada en la esquina inferior izquierda del vidrio: en un bus real dice la marca del vidrio y códigos que se pueden leer; aquí son símbolos que imitan letras pero no dicen nada. Lo mismo pasa con el letrero sobre la entrada del edificio. Cuando lo principal se ve perfecto, los errores suelen estar en los textos pequeños del fondo.",
       "dificultad": "alta"
     }
   ],
