@@ -46,7 +46,7 @@
   }
 
   async function iniciar(clave) {
-    try { EST = await (await fetch("estimulos.json", { cache: "no-cache" })).json(); } catch (e) { EST = { estimulos: [], cierre: [] }; }
+    try { EST = await (await fetch("estimulos.json?t=" + Date.now(), { cache: "no-store" })).json(); const v = encodeURIComponent(EST.version || "1"); [...(EST.estimulos || []), ...(EST.cierre || [])].forEach(e => { if (e.archivo && !e.archivo.includes("?")) e.archivo += "?v=" + v; }); } catch (e) { EST = { estimulos: [], cierre: [] }; }
     $("#contenido").innerHTML = `
       <div class="tarjeta">
         <h2>Fuentes de datos</h2>

@@ -71,8 +71,9 @@
   /* ---------- carga ---------- */
   async function cargar() {
     try {
-      const r = await fetch("estimulos.json", { cache: "no-cache" });
+      const r = await fetch("estimulos.json?t=" + Date.now(), { cache: "no-store" });
       DATOS = await r.json();
+      versionarArchivos(DATOS);
     } catch (e) {
       app.innerHTML = `<p class="aviso error">No se pudo cargar <code>estimulos.json</code>. Si abriste el archivo directamente, usa un servidor local (ver README).</p>`;
       return;
@@ -98,6 +99,13 @@
       if (previa) Datos.borrarSesion();
       pantallaConsentimiento();
     }
+  }
+
+  /* Añade ?v=<version> a cada archivo para que el navegador no muestre una imagen o audio viejo
+     tras reemplazarlo con el mismo nombre. Cambia "version" en estimulos.json al actualizar archivos. */
+  function versionarArchivos(d) {
+    const v = encodeURIComponent(d.version || "1");
+    [...(d.estimulos || []), ...(d.cierre || [])].forEach(e => { if (e.archivo && !e.archivo.includes("?")) e.archivo += "?v=" + v; });
   }
 
   function validar() {

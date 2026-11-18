@@ -1,5 +1,5 @@
 {
-  "version": "v1-placeholders",
+  "version": "2026-11-18-1",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -63,7 +63,7 @@
       "tipo": "real",
       "herramienta_generadora": "",
       "prompt_o_guion_usado": "Foto propia del equipo: mariposa sobre una flor de cosmos naranja, sin personas.",
-      "zona_clave": { "x": 47, "y": 58, "radio": 34 },
+      "zona_clave": { "x": 47.5, "y": 59, "radio": 39 },
       "explicacion_pista": "Es una foto real, tomada por el equipo. Fíjate en la mariposa y la flor: los tonos naranjas cambian de forma gradual y natural en las alas y los pétalos, y hay detalles finos coherentes entre sí, como las venas de las alas, las antenas, el polen del centro y las pequeñas imperfecciones de los pétalos. Estos rastros apoyan que es real, pero no bastan por sí solos: las IA actuales también imitan bien la naturaleza. Lo que lo confirma es su origen: sabemos quién la tomó, cuándo y con qué celular.",
       "dificultad": "baja"
     },
