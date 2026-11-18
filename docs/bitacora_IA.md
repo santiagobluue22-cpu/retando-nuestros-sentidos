@@ -52,7 +52,15 @@
 | 2026-11-18 | Equipo + Claude Code | Claude Code (Anthropic) | Redacción de pistas y ubicación de zonas clave de R1-I3, R1-I4, R2-I1 a R2-I4, R1-A1 a R1-A3 y R2-A1 a R2-A3 | Indicaciones del equipo por estímulo (p. ej., «señala el gato», «señala los árboles») | [Completar] | [Completar] | Las pistas deben revisarse a mano antes de la sesión |
 
 ### Fuente de los audios «reales» R1-A2, R2-A1 y R2-A3 (2026-11-18)
-Según el equipo, salen de estos videos públicos de YouTube (falta indicar qué audio viene de cuál video y en qué minuto):
+Según el equipo, salen de estos videos públicos de YouTube:
+
+| Audio | Archivo original | Video | Minuto |
+|---|---|---|---|
+| R2-A1 | Audio_Real_1 | https://www.youtube.com/watch?v=hM_fTrvJbvdg | 43:06 |
+| R2-A3 | Audio_Real_2 | [Completar] | [Completar] |
+| R1-A2 | Audio_Real_3 | [Completar] | [Completar] |
+
+Enlaces entregados:
 - https://www.youtube.com/watch?v=hM_fTrvJbvdg
 - https://www.youtube.com/watch?v=e-Xg-OLBS0o&t=2102s
 - https://www.youtube.com/watch?v=M_fTrvJbvdg

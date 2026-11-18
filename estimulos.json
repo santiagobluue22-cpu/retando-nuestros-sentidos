@@ -114,7 +114,7 @@
       "orden": 2,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Fragmento de un video público de YouTube (fuente en docs/bitacora_IA.md). PENDIENTE: reemplazar por una grabación propia del equipo, según las reglas de contenido.",
+      "prompt_o_guion_usado": "Fragmento de un video público de YouTube: https://www.youtube.com/watch?v=hM_fTrvJbvdg (minuto 43:06). PENDIENTE: reemplazar por una grabación propia del equipo, según las reglas de contenido.",
       "zona_clave": { "inicio_s": 1.8, "fin_s": 3.2 },
       "explicacion_pista": "Es una grabación real, tomada de un video público. El sonido es apagado, sin agudos, como de llamada: eso no es un rastro de IA, es la compresión normal de una nota de voz del celular. Escucha la pausa del segundo 2,4: no es un silencio total, se oye el ambiente del lugar. Y la voz sube y baja mucho, como cuando hablamos de forma natural. Aun así, lo que confirma que es real es su origen: sabemos de qué video sale y cuándo se publicó.",
       "dificultad": "alta"
