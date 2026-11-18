@@ -127,7 +127,7 @@
   function irA(paso) {
     const m = {
       consentimiento: pantallaConsentimiento, audifonos: pantallaAudifonos, confianza_ini: pantallaConfianzaInicial,
-      intro: pantallaIntroRonda, estimulo: pantallaEstimulo, estrategias: pantallaEstrategias, caso: pantallaCaso,
+      intro: pantallaIntroRonda, estimulo: pantallaEstimulo, estrategias: pantallaEstrategias, caso: pantallaEstrategias,
       confianza_fin: pantallaConfianzaFinal, revelacion: pantallaRevelacion
     };
     (m[paso] || pantallaConsentimiento)();
@@ -171,7 +171,7 @@
       Reproductor.desbloquear();
       S = {
         codigo: Datos.codigoAnonimo(), inicio: ahora(), inicioMs: Date.now(), paso: "audifonos",
-        idx: 0, casoIdx: 0, respuestas: [], confIni: {}, confFin: {}, cierre: [], reflexion: "", terminado: false
+        idx: 0, respuestas: [], confIni: {}, confFin: {}, reflexion: "", terminado: false
       };
       barraCodigo(); guardar(); pantallaAudifonos();
     });
@@ -513,51 +513,8 @@
           <li><b>Revisa quién lo envió y en qué contexto</b>¿Número desconocido? ¿Hay urgencia o presión?</li>
           <li><b>Acuerda una "palabra clave" familiar</b>Es una frase que solo ustedes conocen, útil contra estafas con voz.</li>
         </ul></div>
-      <button class="btn primario" id="seguir">Hacer dos casos de práctica</button>`);
-    app.querySelector("#seguir").addEventListener("click", () => { S.casoIdx = 0; avanzar("caso"); });
-  }
-
-  function pantallaCaso() {
-    const casos = DATOS.cierre || [];
-    const c = casos[S.casoIdx];
-    if (!c) { avanzar("confianza_fin"); return; }
-    progreso(`Cierre · caso ${S.casoIdx + 1} de ${casos.length}`);
-    const sel = new Set(); let texto = "";
-    pintar(`
-      <h2>Caso ${S.casoIdx + 1}</h2>
-      <div id="media"></div>
-      <div class="pie-viral">${esc(c.contexto)}</div>
-      <div class="tarjeta">
-        <p><b>${esc(c.pregunta)}</b> <span class="suave">Puedes elegir varias.</span></p>
-        ${c.opciones.map(o => `<label class="check"><input type="checkbox" value="${esc(o.id)}"> <span>${esc(o.texto)}</span></label>`).join("")}
-        <p><b>¿Por qué?</b> <span class="suave">(opcional)</span></p>
-        <input type="text" id="texto" maxlength="140">
-      </div>
-      <button class="btn primario" id="seguir" disabled>Continuar</button>`);
-    const media = app.querySelector("#media");
-    if (c.medio === "imagen") {
-      media.innerHTML = `<div class="lienzo-img"><div class="marco"><img src="${esc(c.archivo)}" alt="Imagen del caso"></div></div>`;
-    } else {
-      const rep = Reproductor.crear({ url: c.archivo, max: 0 });
-      media.appendChild(rep.el); limpiar.push(rep.destruir);
-    }
-    const b = app.querySelector("#seguir");
-    app.querySelectorAll("input[type=checkbox]").forEach(x => x.addEventListener("change", () => {
-      x.checked ? sel.add(x.value) : sel.delete(x.value); b.disabled = sel.size === 0;
-    }));
-    app.querySelector("#texto").addEventListener("input", ev => { texto = ev.target.value; });
-    b.addEventListener("click", () => {
-      const elegidas = c.opciones.filter(o => sel.has(o.id));
-      S.cierre = S.cierre.filter(x => x.caso_cierre !== c.id);
-      S.cierre.push({
-        id_registro: Datos.uuid(), codigo: S.codigo, timestamp: ahora(), tipo_registro: "cierre",
-        id_estimulo: c.id, medio: c.medio, tipo_correcto: c.tipo, caso_cierre: c.id,
-        estrategias: elegidas.map(o => o.id).join("|"),
-        estrategia_no_sensorial: elegidas.some(o => !o.sensorial) ? 1 : 0,
-        texto: texto.trim().slice(0, 140), version_estimulos: DATOS.version || ""
-      });
-      S.casoIdx++; guardar(); pantallaCaso();
-    });
+      <button class="btn primario" id="seguir">Continuar</button>`);
+    app.querySelector("#seguir").addEventListener("click", () => avanzar("confianza_fin"));
   }
 
   /* ---------- 5. completar y guardar ---------- */
@@ -567,7 +524,6 @@
       { id_registro: Datos.uuid(), codigo: S.codigo, timestamp: S.inicio, tipo_registro: "confianza_inicial",
         confianza_imagen: S.confIni.imagen, confianza_audio: S.confIni.audio, version_estimulos: v },
       ...S.respuestas,
-      ...S.cierre,
       { id_registro: Datos.uuid(), codigo: S.codigo, timestamp: ahora(), tipo_registro: "confianza_final",
         confianza_imagen: S.confFin.imagen, confianza_audio: S.confFin.audio, texto: (S.reflexion || "").trim().slice(0, 280), version_estimulos: v },
       { id_registro: Datos.uuid(), codigo: S.codigo, timestamp: ahora(), tipo_registro: "sesion",
@@ -588,7 +544,7 @@
     const celda = o => `${o.a}/${o.n}`;
     const reales = R.filter(x => x.tipo_correcto === "real");
     const realesComoIA = reales.filter(x => x.decision === "ia").length;
-    const todos = [...SECUENCIA, ...(DATOS.cierre || [])];
+    const todos = SECUENCIA;
     const flecha = (a, b) => b > a ? "↑" : b < a ? "↓" : "=";
 
     pintar(`
@@ -614,7 +570,7 @@
       <div class="galeria">
         ${todos.map(e => {
           const ia = e.tipo === "ia";
-          const tit = e.ronda ? `Ronda ${e.ronda} · ${e.id}` : `Cierre · ${e.id}`;
+          const tit = `Ronda ${e.ronda} · ${e.id}`;
           const med = e.medio === "imagen"
             ? `<div class="med"><img src="${esc(e.archivo)}" alt="${esc(e.id)}" loading="lazy">${ia ? `<div class="marca-agua"><span>SINTÉTICO, generado con IA para fines educativos</span></div>` : ""}</div>`
             : `<div class="med audio-med">🔊<audio controls preload="none" playsinline src="${esc(e.archivo)}"></audio></div>${ia ? `<div class="etiqueta-audio">SINTÉTICO, generado con IA para fines educativos</div>` : ""}`;

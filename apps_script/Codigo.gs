@@ -14,7 +14,7 @@ const COLUMNAS = [
   "tipo_correcto", "decision", "acierto", "confianza", "coordenadas_x_y", "coord_x_pct", "coord_y_pct",
   "categoria_detalle", "detalle_concreto", "texto", "reproducciones",
   "reproducciones_pista", "tiempo_respuesta_s", "confianza_imagen", "confianza_audio",
-  "caso_cierre", "estrategias", "estrategia_no_sensorial", "version_estimulos", "recibido"
+  "version_estimulos", "recibido"
 ];
 
 function hoja_() {

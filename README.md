@@ -21,13 +21,13 @@ Es un sitio estático (HTML + CSS + JS) sin dependencias externas, pensado para 
 index.html            Experiencia del participante
 panel.html            Panel del equipo (clave en config.js)
 config.js             Endpoint de Google Sheets, clave del panel, límite de reproducciones
-estimulos.json        Estímulos y casos de cierre (editable)
+estimulos.json        Estímulos de las dos rondas (editable)
 css/estilos.css
 js/datos.js           localStorage, cola de envío con reintentos, CSV
 js/reproductor.js     Reproductor con forma de onda (Web Audio + canvas, sin WaveSurfer)
 js/app.js             Flujo de la experiencia
 js/panel.js           Indicadores, mapas de calor, exportación
-media/ronda1/  media/ronda2/  media/cierre/  media/prueba_sonido.mp3
+media/ronda1/  media/ronda2/  media/prueba_sonido.mp3
 apps_script/Codigo.gs Receptor para Google Sheets
 herramientas/generar_placeholders.py
 docs/guion_facilitador.md   docs/bitacora_IA.md
@@ -44,7 +44,7 @@ robots.txt  .nojekyll
    - **Decidir y dar la confianza.**
    - **Señalar el detalle (obligatorio).** En las imágenes se toca la zona y se elige una categoría; en los audios solo se elige la categoría. El texto es opcional.
    - **Pista.** Se muestra la zona clave resaltada o el fragmento clave, que se puede volver a reproducir.
-5. **Cierre.** Estrategias de verificación y dos casos de práctica: una imagen viral y una nota de voz que pide dinero.
+5. **Cierre.** Pantalla con estrategias para verificar imágenes y audios más allá de los sentidos.
 6. **Confianza final**, con las mismas dos escalas y una reflexión corta.
 7. **Revelación.** Resumen personal y galería con marcas de agua «SINTÉTICO, generado con IA para fines educativos».
 
@@ -94,7 +94,7 @@ Cada estímulo tiene estos campos:
 
 Cada ronda debe tener **4 imágenes y 3 audios**. Si no cuadra, la consola muestra un aviso.
 
-`cierre` contiene los dos casos. Cada opción lleva `"sensorial": true/false`, que alimenta el indicador 4. Si cambias `version`, ese valor queda registrado en cada fila.
+Cambia `version` cada vez que reemplaces un archivo: así el navegador no muestra la versión vieja guardada en caché, y ese valor queda registrado en cada fila.
 
 **Revisión manual:** abre `panel.html` y ve a «Revisión de estímulos». Ahí verás cada pista con la zona clave dibujada encima. Úsalo para ubicar bien las coordenadas y revisar a mano los textos preparados con IA.
 
@@ -151,7 +151,7 @@ Se abre con la clave de `config.js`. Es una barrera mínima, no seguridad real: 
 1. % de aciertos en R1 frente a R2, en total y por persona, más el % de contenidos reales marcados como IA (indicador de la trampa).
 2. % de justificaciones con un detalle concreto frente a «fue intuición», y las categorías usadas.
 3. Confianza inicial frente a final, y calibración: la confianza 1–5 se traduce a una probabilidad esperada (1 = 50 %, 5 = 100 %) y se compara con los aciertos. Incluye el % de aciertos por nivel de confianza.
-4. % de participantes que eligen al menos una estrategia no sensorial en cada caso del cierre.
+4. Reflexiones finales: respuestas a «¿Qué harías distinto la próxima vez?», para ver de forma cualitativa si mencionan verificar más allá de los sentidos.
 5. Mapa de calor de los toques por imagen (junto a la zona clave) y, por cada audio, el % de respuestas que eligió cada tipo de detalle.
 6. Reproducciones promedio por audio, durante la decisión y del fragmento en la pista.
 
@@ -163,15 +163,13 @@ Se abre con la clave de `config.js`. Es una barrera mínima, no seguridad real: 
 id_registro, codigo, timestamp, tipo_registro, ronda, id_estimulo, medio, orden, tipo_correcto,
 decision, acierto, confianza, coordenadas_x_y, coord_x_pct, coord_y_pct,
 categoria_detalle, detalle_concreto, texto, reproducciones, reproducciones_pista,
-tiempo_respuesta_s, confianza_imagen, confianza_audio, caso_cierre, estrategias,
-estrategia_no_sensorial, version_estimulos
+tiempo_respuesta_s, confianza_imagen, confianza_audio, version_estimulos
 ```
 
 `tipo_registro` puede valer:
 
 - `estimulo`: una fila por estímulo.
 - `confianza_inicial` y `confianza_final`: usan `confianza_imagen` y `confianza_audio`. La final incluye además la reflexión en `texto`.
-- `cierre`: una fila por caso, con `estrategias` separadas por `|`.
 - `sesion`: duración total en `tiempo_respuesta_s`.
 
 **Privacidad:** no se registra IP, nombre, correo, user-agent ni ningún dato del dispositivo, y **no se usa el micrófono**.

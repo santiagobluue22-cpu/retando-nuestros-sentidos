@@ -25,7 +25,7 @@
     let n = 0;
     filas.forEach(f => {
       const o = Datos.normalizar(f);
-      if (!o.id_registro) o.id_registro = [o.codigo, o.tipo_registro, o.id_estimulo, o.caso_cierre, o.timestamp].join("|");
+      if (!o.id_registro) o.id_registro = [o.codigo, o.tipo_registro, o.id_estimulo, o.timestamp].join("|");
       if (!FILAS.has(o.id_registro)) { FILAS.set(o.id_registro, o); n++; }
     });
     $("#estado").textContent = `${FILAS.size} filas cargadas`;
@@ -61,7 +61,7 @@
       </div>
       <nav class="secciones">
         <a href="#s1">1 · Aciertos</a><a href="#s2">2 · Justificación</a><a href="#s3">3 · Confianza y calibración</a>
-        <a href="#s4">4 · Verificación</a><a href="#s5">5 · Mapas y detalles de audio</a><a href="#s6">6 · Reproducciones</a><a href="#s7">Revisión de estímulos</a>
+        <a href="#s4">4 · Reflexiones</a><a href="#s5">5 · Mapas y detalles de audio</a><a href="#s6">6 · Reproducciones</a><a href="#s7">Revisión de estímulos</a>
       </nav>
       <div id="resultados"></div>`;
     $("#f-sheets").addEventListener("click", () => desdeSheets(clave));
@@ -126,7 +126,6 @@
 
     const ini = filas.filter(f => f.tipo_registro === "confianza_inicial");
     const fin = filas.filter(f => f.tipo_registro === "confianza_final");
-    const cie = filas.filter(f => f.tipo_registro === "cierre");
     const ses = filas.filter(f => f.tipo_registro === "sesion");
     const dur = media(ses.map(f => num(f.tiempo_respuesta_s)));
 
@@ -207,21 +206,9 @@
       ${tabla(["Medio", "Confianza inicial", "Esperado", "Aciertos R1+R2", "Confianza final"], ["imagen", "audio"].map(m => [m, f1(ci(m)), fp(confAPct(ci(m))), fp(tasa(deMedio(est, m), "acierto")), f1(cf(m))]))}
     </div>`;
 
-    /* 4. Verificación */
-    html += `<div class="tarjeta" id="s4"><h2>4 · Estrategias de verificación en el cierre</h2>
-      <p class="suave">% de participantes que eligen al menos una estrategia que NO depende de los sentidos.</p>
-      ${barras((EST.cierre || []).map(c => {
-        const a = cie.filter(f => f.caso_cierre === c.id), n = a.filter(f => Number(f.estrategia_no_sensorial) === 1).length;
-        return { titulo: `${c.id} · ${c.medio === "imagen" ? "imagen viral" : "nota de voz"}`, barras: [{ serie: "Participantes", color: "var(--s1)", valor: pct(n, a.length), texto: `${fp(pct(n, a.length))} (${n}/${a.length})` }] };
-      }))}
-      ${(EST.cierre || []).map(c => {
-        const a = cie.filter(f => f.caso_cierre === c.id);
-        return `<h3>${esc(c.id)}: opciones elegidas</h3>` + tabla(["Opción", "¿Sensorial?", "Personas", "%"], c.opciones.map(o => {
-          const n = a.filter(f => String(f.estrategias).split("|").includes(o.id)).length;
-          return [esc(o.texto), o.sensorial ? "sí" : "no", n, fp(pct(n, a.length))];
-        }));
-      }).join("")}
-      <h3>Reflexiones finales</h3>
+    /* 4. Reflexiones finales */
+    html += `<div class="tarjeta" id="s4"><h2>4 · ¿Qué harían distinto? (reflexiones finales)</h2>
+      <p class="suave">Respuestas a «¿Qué harías distinto la próxima vez que veas o escuches algo dudoso?». Sirven para ver, de forma cualitativa, si mencionan verificar más allá de los sentidos.</p>
       <ul>${fin.filter(f => f.texto).map(f => `<li><span class="suave">${esc(f.codigo)}:</span> ${esc(f.texto)}</li>`).join("") || "<li class='suave'>Sin textos.</li>"}</ul>
     </div>`;
 

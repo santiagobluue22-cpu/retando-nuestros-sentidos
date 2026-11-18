@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-15",
+  "version": "2026-11-18-16",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -183,45 +183,6 @@
       "zona_clave": { "x": 5, "y": 92, "radio": 9 },
       "explicacion_pista": "Es una imagen generada con IA, y la persona de la mano no existe. La mano, el anillo y la pulsera están muy bien hechos, así que hay que buscar en otro lado. Mira la etiqueta grabada en la esquina inferior izquierda del vidrio: en un bus real dice la marca del vidrio y códigos que se pueden leer; aquí son símbolos que imitan letras pero no dicen nada. Lo mismo pasa con el letrero sobre la entrada del edificio. Cuando lo principal se ve perfecto, los errores suelen estar en los textos pequeños del fondo.",
       "dificultad": "alta"
-    }
-  ],
-  "cierre": [
-    {
-      "id": "C-IMG",
-      "archivo": "media/cierre/caso_imagen.jpg",
-      "medio": "imagen",
-      "tipo": "ia",
-      "herramienta_generadora": "[ej. Midjourney v7]",
-      "prompt_o_guion_usado": "[Prompt: 'inundación en una calle de una ciudad, foto de noticia']",
-      "contexto": "«URGENTE: así amaneció hoy la Carrera Séptima. Los medios no lo muestran. ¡Compártelo!» (publicación viral ficticia)",
-      "pregunta": "Te llega esta imagen con este mensaje. ¿Qué harías PRIMERO para verificarla?",
-      "opciones": [
-        { "id": "mirar_detalles", "texto": "Mirarla con más atención para buscar errores", "sensorial": true },
-        { "id": "fuente_original", "texto": "Buscar quién la publicó primero (fuente original)", "sensorial": false },
-        { "id": "busqueda_inversa", "texto": "Hacer una búsqueda inversa de la imagen", "sensorial": false },
-        { "id": "contrastar_medios", "texto": "Ver si otros medios confiables lo reportan", "sensorial": false },
-        { "id": "fecha_lugar", "texto": "Revisar si la fecha, el lugar y el clima coinciden", "sensorial": false },
-        { "id": "metadatos", "texto": "Revisar metadatos o credenciales de contenido", "sensorial": false },
-        { "id": "compartir", "texto": "Compartirla para alertar a otros", "sensorial": true }
-      ]
-    },
-    {
-      "id": "C-AUD",
-      "archivo": "media/cierre/caso_audio.mp3",
-      "medio": "audio",
-      "tipo": "ia",
-      "herramienta_generadora": "[TTS de catálogo, voz genérica, NO clonada]",
-      "prompt_o_guion_usado": "Guion ficticio: 'Hola, soy yo, se me dañó el celular y estoy en un problema. Necesito que me consignes ya a este número, después te explico.'",
-      "contexto": "Nota de voz que llega desde un número desconocido. La voz dice ser de alguien cercano y pide dinero urgente. (Caso ficticio, voz genérica.)",
-      "pregunta": "¿Qué harías PRIMERO?",
-      "opciones": [
-        { "id": "escuchar_otra_vez", "texto": "Escucharla otra vez para ver si la voz suena falsa", "sensorial": true },
-        { "id": "llamar_conocido", "texto": "Llamar de vuelta al número que ya conozco de esa persona", "sensorial": false },
-        { "id": "palabra_clave", "texto": "Preguntar la palabra clave que acordamos en familia", "sensorial": false },
-        { "id": "otro_canal", "texto": "Confirmar con otra persona cercana por otro canal", "sensorial": false },
-        { "id": "revisar_remitente", "texto": "Revisar quién la envió, desde qué número y en qué contexto", "sensorial": false },
-        { "id": "enviar_dinero", "texto": "Enviar el dinero rápido por si acaso", "sensorial": true }
-      ]
     }
   ]
 }
