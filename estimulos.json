@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-6",
+  "version": "2026-11-18-7",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -100,10 +100,10 @@
       "ronda": 2,
       "orden": 1,
       "tipo": "ia",
-      "herramienta_generadora": "[ej. Midjourney v7]",
-      "prompt_o_guion_usado": "[Prompt: 'bodegón de frutas en una ventana, fotografía analógica']",
-      "zona_clave": { "x": 70, "y": 30, "radio": 12 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una imagen generada con IA. Casi todo se ve bien, pero el reflejo en el vidrio de la ventana muestra un árbol que no existe en la escena. En imágenes de dificultad alta, los errores están en los detalles secundarios.",
+      "herramienta_generadora": "[Completar: herramienta usada]",
+      "prompt_o_guion_usado": "[Completar: prompt usado] Bicicleta antigua apoyada en una pared de ladrillo en un callejón empedrado.",
+      "zona_clave": { "x": 43.5, "y": 52, "radio": 9 },
+      "explicacion_pista": "Es una imagen generada con IA. Mira el candado negro en forma de U: sale del tubo del sillín, se dobla y se funde con el cuadro, sin asegurar la bicicleta a nada. Un candado real rodea algo (la rueda, un poste) y se distingue como una pieza aparte. Si miras más, hay otros rastros: algunos rayos de la rueda trasera se cruzan de forma desordenada y los carteles de la pared tienen letras que no forman palabras. La escena es muy convincente a primera vista: en dificultad alta, los errores están en cómo se conectan las piezas.",
       "dificultad": "alta"
     },
     {
