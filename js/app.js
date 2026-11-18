@@ -237,7 +237,7 @@
         <ol>
           <li><b>Observa o escucha.</b> Puedes ampliar las imágenes. Cada audio se puede reproducir hasta ${MAX_REP} veces.</li>
           <li><b>Decide</b> si es real o generado con IA, y qué tan seguro/a estás.</li>
-          <li><b>Señala el detalle</b> que te hizo decidir.</li>
+          <li><b>Indica qué detalle</b> te hizo decidir. En las imágenes, además, tócalo.</li>
           <li><b>Mira la pista</b>: te mostramos la respuesta y qué rastros revisar.</li>
         </ol>
         <p class="suave">Hay contenido real y contenido generado. No hay trampa en la proporción.</p>
@@ -262,7 +262,7 @@
     const e = SECUENCIA[S.idx];
     if (!e) { avanzar("estrategias"); return; }
     progreso(etiquetaProgreso(e));
-    const r = { e, t0: Date.now(), decision: null, confianza: null, x: null, y: null, seg: null, cat: null, texto: "" };
+    const r = { e, t0: Date.now(), decision: null, confianza: null, x: null, y: null, cat: null, texto: "" };
     if (e.medio === "imagen") cicloImagen(e, r); else cicloAudio(e, r);
   }
 
@@ -283,7 +283,6 @@
       decision: r.decision, acierto: acierto ? 1 : 0, confianza: r.confianza,
       coordenadas_x_y: e.medio === "imagen" ? `${r.x};${r.y}` : "",
       coord_x_pct: e.medio === "imagen" ? r.x : "", coord_y_pct: e.medio === "imagen" ? r.y : "",
-      segundo_marcado: e.medio === "audio" ? r.seg : "",
       categoria_detalle: r.cat, detalle_concreto: r.cat === "intuicion" ? 0 : 1,
       texto: (r.texto || "").trim().slice(0, 140),
       reproducciones: e.medio === "audio" ? reproducciones : "",
@@ -306,7 +305,7 @@
         <button type="button" class="btn eleccion ia" data-d="ia">${g}</button>
       </div>
       ${escala("conf", "¿Qué tan seguro/a estás de tu decisión?", "Nada", "Totalmente", null)}
-      <button class="btn primario" id="a-senalar" disabled>Siguiente: señalar el detalle</button>
+      <button class="btn primario" id="a-senalar" disabled>Siguiente: ¿qué te hizo decidir?</button>
     </div>`;
   }
   function conectarDecision(r, alSeguir) {
@@ -322,21 +321,22 @@
 
   function htmlSenalar(medio) {
     return `<div class="tarjeta" id="bloque-senalar">
-      <p><b>${medio === "imagen" ? "1. Toca en la imagen el detalle que te hizo decidir." : "1. Toca en la onda el momento que te hizo decidir."}</b></p>
-      <p class="suave">${medio === "imagen" ? "Si fue intuición, toca la zona que más miraste." : "Si fue intuición, toca la parte que más te llamó la atención. Puedes volver a escuchar si te quedan reproducciones."}</p>
+      ${medio === "imagen" ? `<p><b>1. Toca en la imagen el detalle que te hizo decidir.</b></p>
+      <p class="suave">Si fue intuición, toca la zona que más miraste.</p>
       <p id="estado-marca" class="suave">Aún no has marcado.</p>
-      <p><b>2. ¿Qué tipo de detalle fue?</b></p>
+      <p><b>2. ¿Qué tipo de detalle fue?</b></p>` : `<p><b>1. ¿Qué detalle del audio te hizo decidir?</b></p>
+      <p class="suave">Puedes volver a escucharlo si te quedan reproducciones.</p>`}
       <div class="chips" role="radiogroup">
         ${CATEGORIAS[medio].map(([id, t]) => `<button type="button" class="chip" role="radio" data-cat="${id}">${t}</button>`).join("")}
       </div>
-      <p><b>3. ¿Algo más?</b> <span class="suave">(opcional)</span></p>
-      <input type="text" id="texto" maxlength="140" placeholder="Ej.: las sombras van en direcciones distintas">
+      <p><b>${medio === "imagen" ? "3" : "2"}. ¿Algo más?</b> <span class="suave">(opcional)</span></p>
+      <input type="text" id="texto" maxlength="140" placeholder="${medio === "imagen" ? "Ej.: las sombras van en direcciones distintas" : "Ej.: no se oye ninguna respiración"}">
       <button class="btn primario" id="confirmar" disabled>Confirmar y ver la pista</button>
     </div>`;
   }
   function conectarSenalar(r, alConfirmar) {
     const b = app.querySelector("#confirmar");
-    const ok = () => { b.disabled = !(r.cat && (r.x !== null || r.seg !== null)); };
+    const ok = () => { b.disabled = !(r.cat && (r.e.medio === "audio" || r.x !== null)); }; // en audio solo se pide la categoría
     app.querySelectorAll("[data-cat]").forEach(x => x.addEventListener("click", () => {
       app.querySelectorAll("[data-cat]").forEach(y => { y.classList.remove("activo"); y.setAttribute("aria-checked", "false"); });
       x.classList.add("activo"); x.setAttribute("aria-checked", "true"); r.cat = x.dataset.cat; ok();
@@ -449,7 +449,7 @@
   function cicloAudio(e, r) {
     pintar(`
       <h2>Escucha con atención</h2>
-      <p class="suave">Puedes reproducirlo hasta ${MAX_REP} veces en total (contando las que uses al señalar).</p>
+      <p class="suave">Puedes reproducirlo hasta ${MAX_REP} veces en total (también puedes usarlas mientras decides).</p>
       <div id="rep"></div>
       <div id="panel"><button class="btn primario" id="listo" disabled>Ya escuché, quiero decidir</button></div>`);
     const rep = Reproductor.crear({
@@ -467,18 +467,13 @@
     }
     function senalar() {
       panel.innerHTML = ""; panel.appendChild(h(htmlSenalar("audio")));
-      const ok = conectarSenalar(r, () => { rep.detener(); rep.desactivarMarcado(); pista(registrar(r, rep.reproducciones)); });
-      rep.activarMarcado(seg => {
-        r.seg = seg;
-        app.querySelector("#estado-marca").textContent = `Marcaste el segundo ${seg.toFixed(1)} ✓ (toca otra vez para cambiarlo).`;
-        ok();
-      });
+      conectarSenalar(r, () => { rep.detener(); pista(registrar(r, rep.reproducciones)); });
       app.querySelector("h2").scrollIntoView({ block: "start" });
     }
     function pista(fila) {
       const z = e.zona_clave || {};
       app.querySelector("h2").textContent = "La pista";
-      app.querySelector("h2").nextElementSibling.textContent = "La franja amarilla es el fragmento clave. Tu marca es la línea azul.";
+      app.querySelector("h2").nextElementSibling.textContent = "La franja amarilla es el fragmento clave. Puedes escucharlo cuantas veces quieras.";
       rep.mostrarFragmento(Number(z.inicio_s) || 0, Number(z.fin_s) || 0);
       panel.innerHTML = "";
       panel.appendChild(h(htmlPista(e, fila) + `<button class="btn primario" id="siguiente">Siguiente</button>`));

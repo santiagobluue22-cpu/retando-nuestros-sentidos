@@ -26,7 +26,7 @@ css/estilos.css
 js/datos.js           localStorage, cola de envío con reintentos, CSV
 js/reproductor.js     Reproductor con forma de onda (Web Audio + canvas, sin WaveSurfer)
 js/app.js             Flujo de la experiencia
-js/panel.js           Indicadores, mapas de calor, histogramas, exportación
+js/panel.js           Indicadores, mapas de calor, exportación
 media/ronda1/  media/ronda2/  media/cierre/  media/prueba_sonido.mp3
 apps_script/Codigo.gs Receptor para Google Sheets
 herramientas/generar_placeholders.py
@@ -42,7 +42,7 @@ robots.txt  .nojekyll
 4. **Ronda 1** (4 imágenes + 3 audios intercalados, dificultad baja-media) y **Ronda 2** (otros 4 + 3, dificultad alta). Cada estímulo sigue el mismo ciclo:
    - **Observar o escuchar.** La imagen se ve a pantalla completa con zoom; el audio se puede reproducir hasta 3 veces.
    - **Decidir y dar la confianza.**
-   - **Señalar el detalle (obligatorio).** Se toca la imagen o la onda y se elige una categoría; el texto es opcional.
+   - **Señalar el detalle (obligatorio).** En las imágenes se toca la zona y se elige una categoría; en los audios solo se elige la categoría. El texto es opcional.
    - **Pista.** Se muestra la zona clave resaltada o el fragmento clave, que se puede volver a reproducir.
 5. **Cierre.** Estrategias de verificación y dos casos de práctica: una imagen viral y una nota de voz que pide dinero.
 6. **Confianza final**, con las mismas dos escalas y una reflexión corta.
@@ -152,7 +152,7 @@ Se abre con la clave de `config.js`. Es una barrera mínima, no seguridad real: 
 2. % de justificaciones con un detalle concreto frente a «fue intuición», y las categorías usadas.
 3. Confianza inicial frente a final, y calibración: la confianza 1–5 se traduce a una probabilidad esperada (1 = 50 %, 5 = 100 %) y se compara con los aciertos. Incluye el % de aciertos por nivel de confianza.
 4. % de participantes que eligen al menos una estrategia no sensorial en cada caso del cierre.
-5. Mapa de calor de los toques por imagen y histograma de los segundos marcados por audio, ambos junto a la zona o el fragmento clave.
+5. Mapa de calor de los toques por imagen (junto a la zona clave) y, por cada audio, el % de respuestas que eligió cada tipo de detalle.
 6. Reproducciones promedio por audio, durante la decisión y del fragmento en la pista.
 
 **⬇ Exportar todo en CSV:** UTF-8 con BOM, para que Excel lo abra bien.
@@ -161,7 +161,7 @@ Se abre con la clave de `config.js`. Es una barrera mínima, no seguridad real: 
 
 ```
 id_registro, codigo, timestamp, tipo_registro, ronda, id_estimulo, medio, orden, tipo_correcto,
-decision, acierto, confianza, coordenadas_x_y, coord_x_pct, coord_y_pct, segundo_marcado,
+decision, acierto, confianza, coordenadas_x_y, coord_x_pct, coord_y_pct,
 categoria_detalle, detalle_concreto, texto, reproducciones, reproducciones_pista,
 tiempo_respuesta_s, confianza_imagen, confianza_audio, caso_cierre, estrategias,
 estrategia_no_sensorial, version_estimulos

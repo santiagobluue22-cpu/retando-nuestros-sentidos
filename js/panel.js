@@ -1,4 +1,4 @@
-/* Panel del equipo: indicadores de evaluación, mapas de calor, histogramas y exportación CSV. */
+/* Panel del equipo: indicadores de evaluación, mapas de calor y exportación CSV. */
 (function () {
   const CFG = window.CONFIG || {};
   const $ = s => document.querySelector(s);
@@ -61,7 +61,7 @@
       </div>
       <nav class="secciones">
         <a href="#s1">1 · Aciertos</a><a href="#s2">2 · Justificación</a><a href="#s3">3 · Confianza y calibración</a>
-        <a href="#s4">4 · Verificación</a><a href="#s5">5 · Mapas e histogramas</a><a href="#s6">6 · Reproducciones</a><a href="#s7">Revisión de estímulos</a>
+        <a href="#s4">4 · Verificación</a><a href="#s5">5 · Mapas y detalles de audio</a><a href="#s6">6 · Reproducciones</a><a href="#s7">Revisión de estímulos</a>
       </nav>
       <div id="resultados"></div>`;
     $("#f-sheets").addEventListener("click", () => desdeSheets(clave));
@@ -227,14 +227,20 @@
 
     /* 5. Mapas / histogramas */
     const imgs = EST.estimulos.filter(e => e.medio === "imagen"), auds = EST.estimulos.filter(e => e.medio === "audio");
-    html += `<div class="tarjeta" id="s5"><h2>5 · Dónde miran y qué momento marcan</h2>
-      <p class="suave">Imágenes: cada toque suma calor (naranja); el círculo punteado blanco es la zona clave. Audios: segundos marcados agrupados de 1 en 1; las barras naranjas caen dentro del fragmento clave.</p>
+    html += `<div class="tarjeta" id="s5"><h2>5 · Dónde miran (imágenes) y qué detalle escuchan (audios)</h2>
+      <p class="suave">Imágenes: cada toque suma calor (naranja); el círculo punteado blanco es la zona clave. Audios: % de respuestas que eligió cada tipo de detalle (en los audios no se marca un momento, solo la categoría).</p>
       <h3>Imágenes</h3><div class="rejilla">${imgs.map(e => {
         const a = est.filter(f => f.id_estimulo === e.id);
         return `<div><div class="mapa" data-mapa="${esc(e.id)}"><img src="${esc(e.archivo)}" alt="${esc(e.id)}"><canvas></canvas></div>
           <p class="suave">${esc(e.id)} · ${e.tipo === "ia" ? "IA" : "Real"} · ${a.length} marcas · ${fp(tasa(a, "acierto"))} aciertos</p></div>`;
       }).join("")}</div>
-      <h3>Audios</h3><div class="rejilla">${auds.map(e => `<div data-hist="${esc(e.id)}"></div>`).join("")}</div>
+      <h3>Audios</h3><div class="rejilla">${auds.map(e => {
+        const a = est.filter(f => f.id_estimulo === e.id);
+        const cats = Array.from(new Set(a.map(f => f.categoria_detalle))).filter(Boolean)
+          .map(c => [c, a.filter(f => f.categoria_detalle === c).length]).sort((x, y) => y[1] - x[1]);
+        return `<div><p style="margin:0 0 4px"><b>${esc(e.id)}</b> <span class="suave">· ${e.tipo === "ia" ? "IA" : "Real"} · ${a.length} respuestas · ${fp(tasa(a, "acierto"))} aciertos</span></p>
+          ${cats.length ? barras([{ titulo: "", barras: cats.map(([c, n]) => ({ serie: esc(c), color: "var(--s1)", valor: pct(n, a.length), texto: `${fp(pct(n, a.length))} (${n})`, tip: `${e.id}: ${n} eligieron «${c}»` })) }]) : '<p class="suave">Sin respuestas.</p>'}</div>`;
+      }).join("")}</div>
     </div>`;
 
     /* 6. Reproducciones */
@@ -254,7 +260,7 @@
 
     html += seccionRevision();
     R.innerHTML = html;
-    dibujarMapas(est); dibujarHistogramas(est); conectarRevision();
+    dibujarMapas(est); conectarRevision();
   }
 
   function dibujarMapas(est) {
@@ -286,27 +292,6 @@
       div.dataset.tip = `${id}: ${pts.length} marcas, ${dentro} dentro de la zona clave`;
       img.complete ? pintar() : img.addEventListener("load", pintar);
       window.addEventListener("resize", pintar);
-    });
-  }
-
-  function dibujarHistogramas(est) {
-    document.querySelectorAll("[data-hist]").forEach(div => {
-      const id = div.dataset.hist, e = EST.estimulos.find(x => x.id === id), z = e.zona_clave || {};
-      const segs = est.filter(f => f.id_estimulo === id && f.segundo_marcado !== "").map(f => num(f.segundo_marcado));
-      const pintar = dur => {
-        dur = Math.ceil(Math.max(dur || 0, ...segs, Number(z.fin_s) || 0, 1));
-        const bins = Array.from({ length: dur }, () => 0);
-        segs.forEach(s => { bins[Math.min(dur - 1, Math.floor(s))]++; });
-        const mx = Math.max(1, ...bins);
-        const enClave = segs.filter(s => s >= z.inicio_s && s <= z.fin_s).length;
-        div.innerHTML = `<p style="margin:0 0 4px"><b>${esc(id)}</b> <span class="suave">· ${e.tipo === "ia" ? "IA" : "Real"} · ${segs.length} marcas · ${enClave} en el fragmento clave</span></p>
-          <div class="hist">${bins.map((b, i) => `<div class="b ${i + 1 > z.inicio_s && i < z.fin_s ? "clave" : ""}" style="height:${b / mx * 100}%" data-tip="${i}–${i + 1} s: ${b} marca(s)"></div>`).join("")}</div>
-          <div class="hist-ejes"><span>0 s</span><span>${dur} s</span></div>`;
-      };
-      const a = new Audio(); a.preload = "metadata";
-      a.addEventListener("loadedmetadata", () => pintar(a.duration));
-      a.addEventListener("error", () => pintar(0));
-      a.src = e.archivo; pintar(0);
     });
   }
 
