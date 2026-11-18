@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-2",
+  "version": "2026-11-18-3",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -88,9 +88,9 @@
       "orden": 7,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Foto propia del equipo: parque con jardines de tulipanes y árboles. Origen y lugar conocidos por el equipo.",
+      "prompt_o_guion_usado": "Foto propia del equipo: jardines de tulipanes y árboles en el parque Emirgan, Estambul (Turquía).",
       "zona_clave": { "x": 60, "y": 30, "radio": 28 },
-      "explicacion_pista": "Es una foto real, tomada por el equipo. Fíjate en los árboles: el árbol joven de la derecha tiene ramas finas, sin hojas y con brotes, que se cruzan de forma irregular, y los pinos tienen copas desiguales, con huecos donde se ve el cielo. Que unos árboles tengan hojas y otros no puede parecer extraño, pero en primavera es normal. Aun así, lo que confirma que es real no es cómo se ve, sino su origen: sabemos quién tomó la foto y en qué lugar fue.",
+      "explicacion_pista": "Es una foto real, tomada por el equipo. Fíjate en los árboles: el árbol joven de la derecha tiene ramas finas, sin hojas y con brotes, que se cruzan de forma irregular, y los pinos tienen copas desiguales, con huecos donde se ve el cielo. Que unos árboles tengan hojas y otros no puede parecer extraño, pero en primavera es normal. Aun así, lo que confirma que es real no es cómo se ve, sino su origen: sabemos quién tomó la foto y que fue en el parque Emirgan, en Estambul (Turquía), famoso por sus tulipanes en primavera.",
       "dificultad": "media"
     },
     {
