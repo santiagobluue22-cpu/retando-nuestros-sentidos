@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-10",
+  "version": "2026-11-18-11",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -49,9 +49,9 @@
       "orden": 4,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Grabación propia: lluvia sobre un techo de zinc y pasos lejanos.",
-      "zona_clave": { "inicio_s": 5.0, "fin_s": 8.0 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una grabación real. El golpe fuerte en el segundo 5 puede sonar a un corte, pero es una gota más grande que cayó cerca del micrófono. El sonido de fondo sigue igual antes y después del golpe. En un audio pegado de varios pedazos, el fondo cambiaría.",
+      "prompt_o_guion_usado": "Voz de un integrante del equipo (con su consentimiento) leyendo un guion ficticio. [Completar: guion]",
+      "zona_clave": { "inicio_s": 5.0, "fin_s": 6.2 },
+      "explicacion_pista": "Es una grabación real, de un integrante del equipo. Compárala con el primer audio de esta ronda: en la pausa del segundo 5,4 no hay un silencio total, se oye el ambiente del lugar. Además, la voz cambia de tono y de ritmo a lo largo de la frase, como cuando hablamos de forma natural. Puede sonar un poco apagada, pero eso es la compresión normal del celular, no un rastro de IA. Lo que confirma que es real es su origen: sabemos quién lo grabó.",
       "dificultad": "media"
     },
     {
@@ -139,10 +139,10 @@
       "ronda": 2,
       "orden": 4,
       "tipo": "ia",
-      "herramienta_generadora": "[TTS de catálogo con respiraciones activadas]",
-      "prompt_o_guion_usado": "Guion ficticio: 'Te dejo el dato: la biblioteca abre a las siete y cierra a las nueve, no te vayas a demorar.'",
-      "zona_clave": { "inicio_s": 6.0, "fin_s": 9.5 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una voz generada con IA, aunque esta herramienta añade respiraciones. La pista está en 'no te vayas a demorar': el acento se mueve a una sílaba extraña y la frase termina de golpe. Los TTS de hoy imitan muy bien la voz, pero no siempre el sentido de la frase.",
+      "herramienta_generadora": "ElevenLabs (voz sintética de catálogo, no corresponde a ninguna persona real)",
+      "prompt_o_guion_usado": "[Completar: guion leído por la voz sintética]",
+      "zona_clave": { "inicio_s": 1.2, "fin_s": 7.9 },
+      "explicacion_pista": "Es un audio generado con IA. Después de la primera pausa, la voz habla de corrido casi siete segundos (del 1,2 al 7,9) sin detenerse a tomar aire. Una persona que habla tanto seguido hace pausas para respirar, aunque sean cortas. La voz es clara y tiene buena entonación, por eso es difícil: el rastro no está en cómo suena, sino en lo que falta. Ningún rastro aislado es prueba definitiva; si un audio así te pidiera algo importante, confírmalo por otro canal.",
       "dificultad": "alta"
     },
     {
