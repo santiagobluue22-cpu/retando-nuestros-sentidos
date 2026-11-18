@@ -62,10 +62,10 @@
       "orden": 5,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Foto propia: pasillo con baldosas repetidas, sin personas.",
-      "zona_clave": { "x": 50, "y": 75, "radio": 18 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una foto real. Las baldosas se repiten de forma perfecta porque así se fabrican y se instalan. Ver un patrón repetido no basta para decir que algo es falso. Lo que delata a la IA es un patrón que se rompe de forma ilógica, por ejemplo baldosas que se funden entre sí.",
-      "dificultad": "media"
+      "prompt_o_guion_usado": "Foto propia del equipo: mariposa sobre una flor de cosmos naranja, sin personas.",
+      "zona_clave": { "x": 47, "y": 58, "radio": 34 },
+      "explicacion_pista": "Es una foto real, tomada por el equipo. Fíjate en la mariposa y la flor: los tonos naranjas cambian de forma gradual y natural en las alas y los pétalos, y hay detalles finos coherentes entre sí, como las venas de las alas, las antenas, el polen del centro y las pequeñas imperfecciones de los pétalos. Estos rastros apoyan que es real, pero no bastan por sí solos: las IA actuales también imitan bien la naturaleza. Lo que lo confirma es su origen: sabemos quién la tomó, cuándo y con qué celular.",
+      "dificultad": "baja"
     },
     {
       "id": "R1-A3",
