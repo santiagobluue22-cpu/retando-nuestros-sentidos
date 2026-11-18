@@ -58,7 +58,7 @@ Según el equipo, salen de estos videos públicos de YouTube:
 |---|---|---|---|
 | ~~R2-A1~~ | Audio_Real_1 | https://www.youtube.com/watch?v=hM_fTrvJbvdg | 43:06 — **reemplazado el 2026-11-18** por un clip de Mozilla Common Voice (CC0, Spontaneous Speech beta; falta el identificador del clip) |
 | R2-A3 | Audio_Real_2 | [Completar] | [Completar] |
-| R1-A2 | Audio_Real_3 | [Completar] | [Completar] |
+| ~~R1-A2~~ | Audio_Real_3 | [YouTube, sin detallar] | **reemplazado el 2026-11-18** por un clip de Mozilla Common Voice (CC0, Spontaneous Speech beta; falta el identificador del clip) |
 
 Enlaces entregados:
 - https://www.youtube.com/watch?v=hM_fTrvJbvdg

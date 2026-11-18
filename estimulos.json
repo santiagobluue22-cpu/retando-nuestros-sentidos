@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-13",
+  "version": "2026-11-18-14",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -49,9 +49,9 @@
       "orden": 4,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Fragmento de un video público de YouTube (fuente en docs/bitacora_IA.md). PENDIENTE: reemplazar por una grabación propia del equipo, según las reglas de contenido.",
-      "zona_clave": { "inicio_s": 5.0, "fin_s": 6.2 },
-      "explicacion_pista": "Es una grabación real, tomada de un video público. Compárala con el primer audio de esta ronda: en la pausa del segundo 5,4 no hay un silencio total, se oye el ambiente del lugar. Además, la voz cambia de tono y de ritmo a lo largo de la frase, como cuando hablamos de forma natural. Puede sonar un poco apagada, pero eso es la compresión normal del celular, no un rastro de IA. Lo que confirma que es real es su origen: sabemos de qué video sale y cuándo se publicó.",
+      "prompt_o_guion_usado": "Habla espontánea de una persona voluntaria, tomada de Mozilla Common Voice (proyecto de voces donadas con licencia CC0): commonvoice.mozilla.org, sección Spontaneous Speech (beta). [Completar: identificador del clip]",
+      "zona_clave": { "inicio_s": 5.8, "fin_s": 7.6 },
+      "explicacion_pista": "Es una grabación real: la voz de una persona voluntaria que donó su grabación a un proyecto abierto (Mozilla Common Voice). Compárala con el primer audio de esta ronda: en la pausa larga del segundo 6 no hay un silencio total, se oye el ambiente del lugar. Además, la voz sube y baja mucho, con el ritmo irregular de alguien que habla sin leer. Ninguno de estos rasgos es prueba por sí solo; lo que confirma que es real es su origen: sabemos de qué proyecto viene y que la persona aceptó compartirla.",
       "dificultad": "media"
     },
     {
