@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-9",
+  "version": "2026-11-18-10",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -114,9 +114,9 @@
       "orden": 2,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Voz de un integrante del equipo (con consentimiento) leyendo un guion neutro ficticio.",
-      "zona_clave": { "inicio_s": 2.0, "fin_s": 5.0 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una grabación real. La voz suena muy pareja porque la persona estaba leyendo un texto, y casi todos leemos con un ritmo más plano que cuando conversamos. Fíjate en la respiración del segundo 4 y en el ruido del cuarto: son rastros normales de una grabación con celular.",
+      "prompt_o_guion_usado": "Voz de un integrante del equipo (con su consentimiento) leyendo un guion ficticio. [Completar: guion]",
+      "zona_clave": { "inicio_s": 1.8, "fin_s": 3.2 },
+      "explicacion_pista": "Es una grabación real, de un integrante del equipo. El sonido es apagado, sin agudos, como de llamada: eso no es un rastro de IA, es la compresión normal de una nota de voz del celular. Escucha la pausa del segundo 2,4: no es un silencio total, se oye el ambiente del lugar. Y la voz sube y baja mucho, como cuando hablamos de forma natural. Aun así, lo que confirma que es real es su origen: sabemos quién lo grabó.",
       "dificultad": "alta"
     },
     {
@@ -166,9 +166,9 @@
       "orden": 6,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Grabación propia: máquina de café funcionando en una cafetería vacía.",
-      "zona_clave": { "inicio_s": 8.0, "fin_s": 11.0 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una grabación real. El zumbido metálico puede parecer el 'timbre metálico' de la IA, pero es el ruido mecánico de la máquina. Cuando sale el vapor, el sonido cambia de forma continua, como pasa con un objeto real.",
+      "prompt_o_guion_usado": "Voz de un integrante del equipo (con su consentimiento) leyendo un guion ficticio. [Completar: guion]",
+      "zona_clave": { "inicio_s": 2.0, "fin_s": 3.0 },
+      "explicacion_pista": "Es una grabación real, de un integrante del equipo. La voz puede sonar pareja, casi plana, y eso puede hacerte pensar en una voz sintética. Pero es normal: cuando leemos un texto en voz alta, la entonación se vuelve más pareja que cuando conversamos. Escucha la pausa del segundo 2,3: se oye el ambiente del cuarto, no un silencio perfecto. Un «ritmo parejo» por sí solo no basta para decir que algo es falso; lo que confirma que es real es su origen: sabemos quién lo grabó.",
       "dificultad": "alta"
     },
     {
