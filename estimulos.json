@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-14",
+  "version": "2026-11-18-15",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -166,9 +166,9 @@
       "orden": 6,
       "tipo": "real",
       "herramienta_generadora": "",
-      "prompt_o_guion_usado": "Fragmento de un video público de YouTube (fuente en docs/bitacora_IA.md). PENDIENTE: reemplazar por una grabación propia del equipo, según las reglas de contenido.",
-      "zona_clave": { "inicio_s": 2.0, "fin_s": 3.0 },
-      "explicacion_pista": "Es una grabación real, tomada de un video público. La voz puede sonar pareja, casi plana, y eso puede hacerte pensar en una voz sintética. Pero es normal: cuando leemos un texto en voz alta, la entonación se vuelve más pareja que cuando conversamos. Escucha la pausa del segundo 2,3: se oye el ambiente del cuarto, no un silencio perfecto. Un «ritmo parejo» por sí solo no basta para decir que algo es falso; lo que confirma que es real es su origen: sabemos de qué video sale y cuándo se publicó.",
+      "prompt_o_guion_usado": "Habla espontánea de una persona voluntaria, tomada de Mozilla Common Voice (proyecto de voces donadas con licencia CC0): commonvoice.mozilla.org, sección Spontaneous Speech (beta). [Completar: identificador del clip]",
+      "zona_clave": { "inicio_s": 3.0, "fin_s": 5.0 },
+      "explicacion_pista": "Es una grabación real: la voz de una persona voluntaria que donó su grabación a un proyecto abierto (Mozilla Common Voice). Entre los segundos 3 y 5 la voz se detiene, suelta un sonido muy corto y vuelve a parar antes de seguir. Ese «arranca y para» puede parecer un corte o una transición brusca de edición, pero es algo muy humano: titubeamos mientras pensamos qué decir. Y en esas pausas se oye el ambiente, no un silencio perfecto. Un rasgo extraño no basta para decir que algo es falso; lo que confirma que es real es su origen: sabemos de qué proyecto viene y que la persona aceptó compartirla.",
       "dificultad": "alta"
     },
     {

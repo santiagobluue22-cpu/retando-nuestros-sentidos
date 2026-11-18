@@ -57,7 +57,7 @@ Según el equipo, salen de estos videos públicos de YouTube:
 | Audio | Archivo original | Video | Minuto |
 |---|---|---|---|
 | ~~R2-A1~~ | Audio_Real_1 | https://www.youtube.com/watch?v=hM_fTrvJbvdg | 43:06 — **reemplazado el 2026-11-18** por un clip de Mozilla Common Voice (CC0, Spontaneous Speech beta; falta el identificador del clip) |
-| R2-A3 | Audio_Real_2 | [Completar] | [Completar] |
+| ~~R2-A3~~ | Audio_Real_2 | [YouTube, sin detallar] | **reemplazado el 2026-11-18** por un clip de Mozilla Common Voice (CC0, Spontaneous Speech beta; falta el identificador del clip) |
 | ~~R1-A2~~ | Audio_Real_3 | [YouTube, sin detallar] | **reemplazado el 2026-11-18** por un clip de Mozilla Common Voice (CC0, Spontaneous Speech beta; falta el identificador del clip) |
 
 Enlaces entregados:
@@ -65,4 +65,4 @@ Enlaces entregados:
 - https://www.youtube.com/watch?v=e-Xg-OLBS0o&t=2102s
 - https://www.youtube.com/watch?v=M_fTrvJbvdg
 
-⚠️ Esto **no cumple** las reglas de contenido del proyecto: los audios reales deben ser sonidos grabados por el equipo o la voz de un integrante que dé su consentimiento. Son voces de terceros que no dieron su consentimiento, y el contenido puede tener derechos de autor. **Pendiente: reemplazarlos por grabaciones propias antes de la sesión.**
+⚠️ Esto **no cumple** las reglas de contenido del proyecto: los audios reales deben ser sonidos grabados por el equipo o la voz de un integrante que dé su consentimiento. Son voces de terceros que no dieron su consentimiento, y el contenido puede tener derechos de autor. **Resuelto el 2026-11-18:** los tres se reemplazaron por clips de Mozilla Common Voice (voces donadas por voluntarios, licencia CC0). Ya no se usa ningún audio de YouTube.
