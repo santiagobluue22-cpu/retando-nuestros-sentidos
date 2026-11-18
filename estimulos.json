@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-5",
+  "version": "2026-11-18-6",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -74,10 +74,10 @@
       "ronda": 1,
       "orden": 6,
       "tipo": "ia",
-      "herramienta_generadora": "[TTS de catálogo, voz genérica]",
-      "prompt_o_guion_usado": "Guion ficticio: 'Buenas tardes, el pedido número cuarenta y dos ya está listo para recoger en la portería.'",
-      "zona_clave": { "inicio_s": 7.0, "fin_s": 10.0 },
-      "explicacion_pista": "[EJEMPLO, reemplazar] Es una voz generada con IA. La frase suena alegre, pero la entonación no cambia en ningún momento. Además, la voz suena 'limpia de más': no hay eco del cuarto ni ruido de fondo.",
+      "herramienta_generadora": "ElevenLabs (voz sintética de catálogo, no corresponde a ninguna persona real)",
+      "prompt_o_guion_usado": "[Completar: guion leído por la voz sintética]",
+      "zona_clave": { "inicio_s": 3.2, "fin_s": 4.2 },
+      "explicacion_pista": "Es un audio generado con IA, y este es difícil. A diferencia del primer audio, en la pausa del segundo 3,4 sí se oye un leve ruido de fondo, y la entonación sube y baja con naturalidad entre frases. Es decir, esta voz ya imita muy bien los rastros que solemos buscar. Es un buen ejemplo de que el oído no siempre basta: cuando un audio importa, lo que lo confirma es verificar quién lo envió y comprobarlo por otro canal.",
       "dificultad": "media"
     },
     {
