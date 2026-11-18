@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-18-4",
+  "version": "2026-11-18-5",
   "nota": "Archivo editable. Todo el texto de 'explicacion_pista' se redacta con ayuda de IA y lo revisa el equipo a mano. zona_clave: imagen {x,y,radio} en % del ancho/alto (radio en % del ancho); audio {inicio_s, fin_s}.",
   "estimulos": [
     {
@@ -23,9 +23,9 @@
       "orden": 2,
       "tipo": "ia",
       "herramienta_generadora": "[Completar: herramienta TTS y nombre de la voz de catálogo]",
-      "prompt_o_guion_usado": "[Completar: guion leído por la voz sintética]",
+      "prompt_o_guion_usado": "Guion ficticio: «Eran las 3 de la mañana cuando escuché mi nombre. Pensé que estaba solo, hasta que alguien respondió desde debajo de mi cama.»",
       "zona_clave": { "inicio_s": 2.6, "fin_s": 5.1 },
-      "explicacion_pista": "Es un audio generado con IA. Escucha las pausas entre frases (segundos 2,7 a 5): son un silencio total, sin ningún ruido de fondo. Cuando grabamos con un celular, en las pausas siempre queda algo: el ambiente del cuarto, la respiración o un leve zumbido. Ese «silencio perfecto» es un rastro típico de las voces sintéticas, pero no es una prueba definitiva: algunos programas de edición también limpian el ruido. Si un audio así te pidiera algo importante, confírmalo por otro canal.",
+      "explicacion_pista": "Es un audio generado con IA. Escucha las pausas después de «escuché mi nombre» y de «pensé que estaba solo» (segundos 2,7 a 5): son un silencio total, sin ningún ruido de fondo. Cuando grabamos con un celular, en las pausas siempre queda algo: el ambiente del cuarto, la respiración o un leve zumbido. Ese «silencio perfecto» es un rastro típico de las voces sintéticas, pero no es una prueba definitiva: algunos programas de edición también limpian el ruido. Si un audio así te pidiera algo importante, confírmalo por otro canal.",
       "dificultad": "baja"
     },
     {
