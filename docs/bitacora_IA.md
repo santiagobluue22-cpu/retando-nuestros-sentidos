@@ -44,3 +44,7 @@
 | Fecha | Integrante | Herramienta | Propósito | Prompt / parámetros | Qué aceptamos | Qué rechazamos / modificamos | Por qué |
 |---|---|---|---|---|---|---|---|
 | 2026-11-17 | Equipo (encargo a Claude Code) | Claude Code + EDSR ×4 (modelo neuronal de superresolución, OpenCV dnn_superres) | Mejorar la nitidez de `r1_i1` y `r1_i2` (originales de 512×286 px) | Reducción de ruido JPEG suave → EDSR ×4 → 1600 px → enfoque moderado | [Completar tras revisar] | Se descartó un mejorador generativo (tipo Real-ESRGAN/Topaz) porque inventa detalle | Las imágenes ya eran sintéticas; se comprobó que las letras deformadas del letrero (la pista) quedan iguales. No aplicar EDSR a fotos reales: añadiría rastros de procesamiento con IA |
+
+| Fecha | Integrante | Herramienta | Propósito | Prompt / guion | Qué aceptamos | Qué rechazamos / modificamos | Por qué |
+|---|---|---|---|---|---|---|---|
+| 2026-11-17 | Equipo | ElevenLabs (voz de catálogo, no clonada) | Audio sintético R1-A1 | «Eran las 3 de la mañana cuando escuché mi nombre. Pensé que estaba solo, hasta que alguien respondió desde debajo de mi cama.» (guion ficticio) | [Completar] | Claude Code normalizó el volumen; la pista (silencio total en las pausas) se basó en una medición del archivo | [Completar] |

@@ -22,7 +22,7 @@
       "ronda": 1,
       "orden": 2,
       "tipo": "ia",
-      "herramienta_generadora": "[Completar: herramienta TTS y nombre de la voz de catálogo]",
+      "herramienta_generadora": "ElevenLabs (voz sintética de catálogo, no corresponde a ninguna persona real)",
       "prompt_o_guion_usado": "Guion ficticio: «Eran las 3 de la mañana cuando escuché mi nombre. Pensé que estaba solo, hasta que alguien respondió desde debajo de mi cama.»",
       "zona_clave": { "inicio_s": 2.6, "fin_s": 5.1 },
       "explicacion_pista": "Es un audio generado con IA. Escucha las pausas después de «escuché mi nombre» y de «pensé que estaba solo» (segundos 2,7 a 5): son un silencio total, sin ningún ruido de fondo. Cuando grabamos con un celular, en las pausas siempre queda algo: el ambiente del cuarto, la respiración o un leve zumbido. Ese «silencio perfecto» es un rastro típico de las voces sintéticas, pero no es una prueba definitiva: algunos programas de edición también limpian el ruido. Si un audio así te pidiera algo importante, confírmalo por otro canal.",
