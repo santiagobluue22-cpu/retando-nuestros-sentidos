@@ -89,11 +89,13 @@
       const barras = Math.max(40, Math.floor(w / 4));
       const p = st.picos || Array.from({ length: barras }, (_, i) => 0.25 + 0.15 * Math.sin(i / 3));
       const prog = st.duracion ? audio.currentTime / st.duracion : 0;
+      const gradJugado = g.createLinearGradient(0, 0, w, 0);
+      gradJugado.addColorStop(0, "#ff8a3d"); gradJugado.addColorStop(.5, "#f2385a"); gradJugado.addColorStop(1, "#c04bff");
       for (let i = 0; i < barras; i++) {
         const v = p[Math.floor(i * p.length / barras)] || 0;
         const bh = Math.max(2, v * (h - 16));
         const x = i * (w / barras);
-        g.fillStyle = (i / barras) < prog ? "#6fb3e6" : "#4a6178";
+        g.fillStyle = (i / barras) < prog ? gradJugado : "rgba(200, 185, 240, .38)";
         g.fillRect(x, (h - bh) / 2, Math.max(1, w / barras - 1.5), bh);
       }
     }

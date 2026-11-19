@@ -32,10 +32,20 @@
   function h(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content; }
   function pintar(html) {
     limpiar.forEach(fn => { try { fn(); } catch (e) {} }); limpiar = [];
-    app.innerHTML = ""; app.appendChild(h(html)); window.scrollTo(0, 0);
+    app.innerHTML = ""; app.classList.remove("entrar"); void app.offsetWidth; app.classList.add("entrar");
+    app.appendChild(h(html)); window.scrollTo(0, 0);
   }
   function guardar() { if (S) Datos.escribirSesion(S); }
-  function progreso(txt) { $progreso.textContent = txt || ""; }
+  function progreso(txt) {
+    $progreso.textContent = txt || "";
+    const barra = document.getElementById("avance"); if (!barra) return;
+    let p = 0;
+    if (S) {
+      const base = { audifonos: 4, confianza_ini: 8, intro: 10, estimulo: 10, estrategias: 90, caso: 90, confianza_fin: 95, revelacion: 100 }[S.paso] || 2;
+      p = (S.paso === "estimulo" || S.paso === "intro") && SECUENCIA.length ? 10 + 78 * (S.idx / SECUENCIA.length) : base;
+    }
+    barra.style.width = p + "%";
+  }
   function barraCodigo() { $codigo.textContent = S ? S.codigo : ""; }
 
   function escala(id, pregunta, minTxt, maxTxt, valor) {
@@ -155,7 +165,12 @@
   function pantallaConsentimiento() {
     S = null; barraCodigo(); progreso("Inicio");
     pintar(`
-      <h1>¿Basta con mirar o escuchar algo para saber si es real?</h1>
+      <div class="hero">
+        <div class="hero-iconos" aria-hidden="true"><span>👁️</span><span>👂</span></div>
+        <p class="kicker" style="margin-top:14px">Retando nuestros sentidos</p>
+        <h1>¿Basta con mirar o escuchar algo para saber si es real?</h1>
+        <p class="sub">Imágenes y audios. Algunos reales, otros generados con IA. ¿Puedes distinguirlos?</p>
+      </div>
       <div class="tarjeta">
         <p>Vas a ver imágenes y escuchar audios cortos, en dos rondas. En cada uno decidirás si es real o si fue generado con IA, y nos mostrarás qué detalle te hizo decidir. Luego verás una pista.</p>
         <p>La experiencia dura entre 12 y 15 minutos y es <b>anónima</b>: no pedimos tu nombre, correo ni ningún dato personal, y no usamos tu micrófono. Solo verás un código al azar.</p>
@@ -239,10 +254,11 @@
     const e = SECUENCIA[S.idx]; const r = Number(e.ronda);
     progreso("Ronda " + r);
     pintar(r === 1 ? `
+      <div class="ronda-badge">1</div>
       <h1>Ronda 1</h1>
       <div class="tarjeta">
         <p>Verás <b>4 imágenes</b> y escucharás <b>3 audios</b>, intercalados. En cada uno:</p>
-        <ol>
+        <ol class="pasos">
           <li><b>Observa o escucha.</b> Puedes ampliar las imágenes. Cada audio se puede reproducir hasta ${MAX_REP} veces.</li>
           <li><b>Decide</b> si es real o generado con IA, y qué tan seguro/a estás.</li>
           <li><b>Indica qué detalle</b> te hizo decidir. En las imágenes, además, tócalo.</li>
@@ -251,6 +267,7 @@
         <p class="suave">Hay contenido real y contenido generado. No hay trampa en la proporción.</p>
       </div>
       <button class="btn primario" id="seguir">Empezar la ronda 1</button>` : `
+      <div class="ronda-badge r2">2</div>
       <h1>Ronda 2</h1>
       <div class="tarjeta">
         <p>Otros <b>4 imágenes</b> y <b>3 audios</b>, distintos a los de la ronda 1. <b>Esta ronda es más difícil.</b></p>
@@ -309,8 +326,8 @@
     return `<div class="tarjeta" id="bloque-decision">
       <p><b>¿${medio === "imagen" ? "Esta imagen" : "Este audio"} es real o ${medio === "imagen" ? "generada" : "generado"} con IA?</b></p>
       <div class="fila">
-        <button type="button" class="btn eleccion real" data-d="real">Real</button>
-        <button type="button" class="btn eleccion ia" data-d="ia">${g}</button>
+        <button type="button" class="btn eleccion real" data-d="real"><span class="ico" aria-hidden="true">📷</span>Real</button>
+        <button type="button" class="btn eleccion ia" data-d="ia"><span class="ico" aria-hidden="true">🤖</span>${g}</button>
       </div>
       ${escala("conf", "¿Qué tan seguro/a estás de tu decisión?", "Nada", "Totalmente", null)}
       <button class="btn primario" id="a-senalar" disabled>Siguiente: ¿qué te hizo decidir?</button>
@@ -430,6 +447,7 @@
         let m = marco.querySelector(".marcador");
         if (!m) { m = document.createElement("div"); m.className = "marcador"; marco.appendChild(m); }
         m.style.left = r.x + "%"; m.style.top = r.y + "%";
+        m.classList.remove("pop"); void m.offsetWidth; m.classList.add("pop"); marco.classList.add("marcado");
         app.querySelector("#estado-marca").textContent = "Marcado ✓ (puedes tocar otra vez para cambiarlo).";
         ok();
       });
@@ -499,14 +517,14 @@
     pintar(`
       <h1>Verificar más allá de los sentidos</h1>
       <p>Tus ojos y tus oídos dan pistas, pero no certezas. Cuando algo importa, usa también estas estrategias:</p>
-      <div class="tarjeta"><h3 style="margin-top:0">🖼️ Con imágenes</h3>
+      <div class="tarjeta img-est"><h3 style="margin-top:0">🖼️ Con imágenes</h3>
         <ul class="estrategias">
           <li><b>Busca la fuente original</b>¿Quién la publicó primero? ¿Es una cuenta o un medio confiable?</li>
           <li><b>Haz una búsqueda inversa</b>Usa Google Lens, TinEye o Bing para ver si la imagen ya existía o viene de otro contexto.</li>
           <li><b>Contrasta el contexto</b>Revisa la fecha y el lugar, y mira si otros medios lo reportan.</li>
           <li><b>Revisa metadatos o credenciales de contenido</b>Algunas imágenes traen una etiqueta Content Credentials (C2PA) que indica cómo se hicieron.</li>
         </ul></div>
-      <div class="tarjeta"><h3 style="margin-top:0">🔊 Con audios</h3>
+      <div class="tarjeta aud-est"><h3 style="margin-top:0">🔊 Con audios</h3>
         <ul class="estrategias">
           <li><b>Confirma por otro canal</b>Cuelga y llama tú al número que ya conoces de esa persona.</li>
           <li><b>Busca si aparece en medios confiables</b>Un audio "filtrado" que nadie serio reporta merece dudas.</li>
@@ -548,7 +566,11 @@
     const flecha = (a, b) => b > a ? "↑" : b < a ? "↓" : "=";
 
     pintar(`
-      <h1>Revelación final</h1>
+      <h1><span class="texto-grad">Revelación final</span></h1>
+      <div class="puntajes">
+        <div class="puntaje r1"><div class="n" data-contar="${cuenta(1).a}">0</div><div class="l">de ${cuenta(1).n} aciertos en la ronda 1</div></div>
+        <div class="puntaje r2"><div class="n" data-contar="${cuenta(2).a}">0</div><div class="l">de ${cuenta(2).n} aciertos en la ronda 2 (más difícil)</div></div>
+      </div>
       <div class="tarjeta resumen">
         <h3 style="margin-top:0">Tu resumen</h3>
         <table>
@@ -568,14 +590,14 @@
       <h2>Todo lo que viste y escuchaste</h2>
       <p class="aviso"><b>No compartas estos archivos fuera de esta experiencia.</b> El contenido sintético se creó solo con fines educativos.</p>
       <div class="galeria">
-        ${todos.map(e => {
+        ${todos.map((e, k) => {
           const ia = e.tipo === "ia";
           const tit = `Ronda ${e.ronda} · ${e.id}`;
           const med = e.medio === "imagen"
             ? `<div class="med"><img src="${esc(e.archivo)}" alt="${esc(e.id)}" loading="lazy">${ia ? `<div class="marca-agua"><span>SINTÉTICO, generado con IA para fines educativos</span></div>` : ""}</div>`
-            : `<div class="med audio-med">🔊<audio controls preload="none" playsinline src="${esc(e.archivo)}"></audio></div>${ia ? `<div class="etiqueta-audio">SINTÉTICO, generado con IA para fines educativos</div>` : ""}`;
+            : `<div class="med audio-med"><span class="ico-audio" aria-hidden="true">🔊</span><audio controls preload="none" playsinline src="${esc(e.archivo)}"></audio></div>${ia ? `<div class="etiqueta-audio">SINTÉTICO, generado con IA para fines educativos</div>` : ""}`;
           const mia = R.find(x => x.id_estimulo === e.id);
-          return `<div class="item">${med}<div class="txt">
+          return `<div class="item" style="--i:${k}">${med}<div class="txt">
             <span class="etq ${e.tipo}">${ia ? "IA" : "Real"}</span> ${esc(tit)}
             ${mia ? `<div class="suave">Tu respuesta: ${mia.decision === "ia" ? "IA" : "Real"} ${Number(mia.acierto) ? "✓" : "✗"}</div>` : ""}
           </div></div>`;
@@ -583,6 +605,12 @@
       </div>
       <button class="btn primario" id="terminar">Terminar</button>
       <p class="estado-envio" id="estado-envio"></p>`);
+    // Conteo animado de los puntajes
+    app.querySelectorAll("[data-contar]").forEach(n => {
+      const fin = Number(n.dataset.contar), t0 = performance.now(), dur = 900;
+      const paso = t => { const p = Math.min(1, (t - t0) / dur); n.textContent = Math.round(fin * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(paso); };
+      requestAnimationFrame(paso);
+    });
     const est = app.querySelector("#estado-envio");
     const pintarEstado = s => {
       if (!est.isConnected) return;
